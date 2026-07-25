@@ -1,7 +1,7 @@
-# Tcongs Infotech — Home Page Redesign
+# Tcongs Infotech - Home Page Redesign
 
 A ground-up redesign of the [tcongsinfotech.com](https://tcongsinfotech.com/) home page,
-built as a single self-contained static page. Same business, same content, same brand —
+built as a single self-contained static page. Same business, same content, same brand -
 rebuilt around a clearer information hierarchy and a modern, responsive UI.
 
 **Scope:** home page only, as specified in the brief.
@@ -10,7 +10,7 @@ rebuilt around a clearer information hierarchy and a modern, responsive UI.
 
 ## Stack
 
-Deliberately dependency-free — **semantic HTML5, modern CSS, vanilla JS**.
+Deliberately dependency-free - **semantic HTML5, modern CSS, vanilla JS**.
 
 | | |
 |---|---|
@@ -45,26 +45,26 @@ previous one raises.
 
 **Services became scannable.** 49 individual services were buried in a hover-only dropdown.
 They now live in a 6-card bento grid where each card names its sub-services as chips, so the
-breadth is visible without interaction — and the full list is still one click away in the
+breadth is visible without interaction - and the full list is still one click away in the
 mega menu.
 
 **The broken portfolio was rebuilt.** All four showcase images 404 on the live site (as do the
-process video and the logo on dark backgrounds — see below). Rather than ship placeholders,
-each of the four products — Gig Desk, Ship Track, Villa Vault, Bloom Money — is rendered as a
+process video and the logo on dark backgrounds - see below). Rather than ship placeholders,
+each of the four products - Gig Desk, Ship Track, Villa Vault, Bloom Money - is rendered as a
 **pure CSS/HTML product mockup**: a dashboard with live stat tiles, a shipment map with a
 dashed route, a villa booking card, a savings-circle progress ring. Nothing can 404, they're
 a few KB total, and they stay sharp at any resolution.
 
 **A dark-mode logo.** The brand logo is a base64 PNG wrapped in an SVG `<use>` reference, and
-its wordmark is navy `#05548A` — effectively invisible against the site's near-black header.
+its wordmark is navy `#05548A` - effectively invisible against the site's near-black header.
 I extracted the PNG and recoloured only the navy pixels to white, preserving the anti-aliasing
 and leaving the coloured mark and orange "INFOTECH" untouched. `assets/img/logo-dark.png`.
 
 **The process section drives itself.** Six steps with a sticky photo panel that cross-fades as
 you scroll, a progress rail, and dimmed inactive steps. On mobile it collapses to a plain
-stacked list with inline thumbnails — no sticky behaviour to fight the small viewport.
+stacked list with inline thumbnails - no sticky behaviour to fight the small viewport.
 
-**Honest numbers.** Every figure on the page is traceable to the original site's own copy —
+**Honest numbers.** Every figure on the page is traceable to the original site's own copy -
 8+ years, 49 services, 6 verticals, 8 marketplaces, 7–15 day websites, 3–8 week platforms,
 one business day to reply. Nothing was invented to fill a stat block.
 
@@ -92,11 +92,11 @@ breakpoint jumps. Spacing, radii, easing and shadows are all tokenised at the to
 Built mobile-first and verified against the layout breakpoints at 360 / 480 / 768 / 1024 /
 1280 / 1920 px.
 
-- **Navigation** — mega menu on ≥1024px; below that, a full-height drawer with its own
+- **Navigation** - mega menu on ≥1024px; below that, a full-height drawer with its own
   accordion for the 49 services.
-- **Bento grid** — 1 column → 2 → an asymmetric 6-column grid.
-- **Process** — sticky two-column split on desktop, stacked with inline thumbnails on mobile.
-- **Mockups** — driven by `aspect-ratio` and percentages, so they scale rather than reflow.
+- **Bento grid** - 1 column → 2 → an asymmetric 6-column grid.
+- **Process** - sticky two-column split on desktop, stacked with inline thumbnails on mobile.
+- **Mockups** - driven by `aspect-ratio` and percentages, so they scale rather than reflow.
 
 No horizontal overflow at any width; wide content is constrained rather than allowed to
 push the body.
