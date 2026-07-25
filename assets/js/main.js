@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Tcongs Infotech — Home Page Redesign
-   Vanilla JS. No dependencies. All motion respects prefers-reduced-motion.
-   ========================================================================== */
 (function () {
   "use strict";
 
@@ -10,9 +6,6 @@
   const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isDesktop = () => window.matchMedia("(min-width: 1024px)").matches;
 
-  /* ------------------------------------------------------------------ *
-   * 1. Header — sticky state + back-to-top visibility
-   * ------------------------------------------------------------------ */
   const header = $("#header");
   const toTop = $("#toTop");
 
@@ -25,9 +18,6 @@
     window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" })
   );
 
-  /* ------------------------------------------------------------------ *
-   * 2. Mega menu (desktop)
-   * ------------------------------------------------------------------ */
   const megaItem = $("[data-mega]");
   if (megaItem) {
     const trigger = $(".nav-link", megaItem);
@@ -46,7 +36,6 @@
       closeTimer = setTimeout(close, 180);
     };
 
-    // Pointer intent on desktop, plain toggle everywhere else.
     megaItem.addEventListener("mouseenter", () => isDesktop() && open());
     megaItem.addEventListener("mouseleave", () => isDesktop() && closeSoon());
     trigger.addEventListener("click", (e) => {
@@ -54,7 +43,6 @@
       megaItem.classList.contains("is-open") ? close() : open();
     });
 
-    // Close on Escape, on outside click, and after picking a link.
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && megaItem.classList.contains("is-open")) {
         close();
@@ -65,15 +53,12 @@
       if (!megaItem.contains(e.target)) close();
     });
     $$(".mega a", megaItem).forEach((a) => a.addEventListener("click", close));
-    // Keyboard users tabbing out of the panel should close it too.
+
     megaItem.addEventListener("focusout", (e) => {
       if (!megaItem.contains(e.relatedTarget)) close();
     });
   }
 
-  /* ------------------------------------------------------------------ *
-   * 3. Mobile drawer + its accordion
-   * ------------------------------------------------------------------ */
   const burger = $("#burger");
   const drawer = $("#drawer");
 
@@ -86,7 +71,7 @@
   }
 
   burger.addEventListener("click", () => setDrawer(!drawer.classList.contains("is-open")));
-  // Any navigation from the drawer should dismiss it.
+
   $$("a", drawer).forEach((a) => a.addEventListener("click", () => setDrawer(false)));
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && drawer.classList.contains("is-open")) {
@@ -94,7 +79,7 @@
       burger.focus();
     }
   });
-  // Resizing up to desktop must not leave the body scroll-locked.
+
   window.addEventListener("resize", () => {
     if (isDesktop() && drawer.classList.contains("is-open")) setDrawer(false);
   });
@@ -107,9 +92,6 @@
     });
   });
 
-  /* ------------------------------------------------------------------ *
-   * 4. Scroll reveal
-   * ------------------------------------------------------------------ */
   const revealables = $$("[data-reveal]");
   if (REDUCED || !("IntersectionObserver" in window)) {
     revealables.forEach((el) => el.classList.add("is-in"));
@@ -128,10 +110,6 @@
     revealables.forEach((el) => io.observe(el));
   }
 
-  /* ------------------------------------------------------------------ *
-   * 5. Count-up numbers
-   *    Values like "7–15" keep their suffix and only animate the lead number.
-   * ------------------------------------------------------------------ */
   function countUp(el) {
     const target = parseFloat(el.dataset.count);
     const suffix = el.dataset.suffix || "";
@@ -144,7 +122,7 @@
     const start = performance.now();
     function frame(now) {
       const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      const eased = 1 - Math.pow(1 - p, 3);
       el.textContent = Math.round(target * eased) + suffix;
       if (p < 1) requestAnimationFrame(frame);
     }
@@ -169,9 +147,6 @@
     counters.forEach(countUp);
   }
 
-  /* ------------------------------------------------------------------ *
-   * 6. Sparkline bars in the hero float card
-   * ------------------------------------------------------------------ */
   $$("[data-spark]").forEach((wrap) => {
     wrap.dataset.spark.split(",").forEach((v, i) => {
       const bar = document.createElement("i");
@@ -181,9 +156,6 @@
     });
   });
 
-  /* ------------------------------------------------------------------ *
-   * 7. Seamless marquee — clone the track so a -50% shift loops cleanly
-   * ------------------------------------------------------------------ */
   const track = $("[data-marquee-track]");
   if (track) {
     const clone = track.cloneNode(true);
@@ -192,9 +164,6 @@
     track.parentNode.appendChild(clone);
   }
 
-  /* ------------------------------------------------------------------ *
-   * 8. Process — scroll-spy driving the sticky figure + progress rail
-   * ------------------------------------------------------------------ */
   const steps = $$(".step");
   const figures = $$(".process-figure img");
   const bars = $$(".process-progress i");
@@ -223,9 +192,6 @@
     if (figSub) figSub.textContent = $(".st-sub", body).textContent;
   }
 
-  /* ------------------------------------------------------------------ *
-   * 9. Nav scroll-spy
-   * ------------------------------------------------------------------ */
   const spyLinks = $$(".nav-link[data-spy]");
   const spyTargets = spyLinks
     .map((link) => ({ link, el: document.getElementById(link.dataset.spy) }))
@@ -241,9 +207,6 @@
     if (current) current.link.classList.add("is-active");
   }
 
-  /* ------------------------------------------------------------------ *
-   * 10. Single rAF-throttled scroll handler for everything above
-   * ------------------------------------------------------------------ */
   let ticking = false;
   function onScroll() {
     if (ticking) return;
@@ -259,12 +222,9 @@
   window.addEventListener("resize", onScroll, { passive: true });
   onScrollChrome();
   syncNav();
-  // Deep links (#process) can load the page already scrolled past a step.
+
   window.addEventListener("load", syncProcess);
 
-  /* ------------------------------------------------------------------ *
-   * 11. FAQ accordion — one open at a time
-   * ------------------------------------------------------------------ */
   const faqItems = $$(".faq-item");
   faqItems.forEach((item) => {
     const btn = $(".faq-q", item);
@@ -281,9 +241,6 @@
     });
   });
 
-  /* ------------------------------------------------------------------ *
-   * 12. Card spotlight — feed cursor position to the CSS gradient
-   * ------------------------------------------------------------------ */
   if (!REDUCED && window.matchMedia("(hover: hover)").matches) {
     $$("[data-tilt]").forEach((card) => {
       card.addEventListener("pointermove", (e) => {
@@ -294,10 +251,6 @@
     });
   }
 
-  /* ------------------------------------------------------------------ *
-   * 13. Inquiry form validation
-   *     Front-end only — nothing is transmitted anywhere.
-   * ------------------------------------------------------------------ */
   const form = $("#inquiry");
   const success = $("#success");
 
@@ -322,7 +275,7 @@
     const inputs = $$("input, select, textarea", form);
 
     inputs.forEach((input) => {
-      // Validate on blur, then clear the error as soon as they start fixing it.
+
       input.addEventListener("blur", () => validateField(input));
       input.addEventListener("input", () => {
         if (input.closest(".field").classList.contains("has-error")) validateField(input);
@@ -351,9 +304,6 @@
     });
   }
 
-  /* ------------------------------------------------------------------ *
-   * 14. Footer year
-   * ------------------------------------------------------------------ */
   const year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 })();

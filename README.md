@@ -65,7 +65,7 @@ you scroll, a progress rail, and dimmed inactive steps. On mobile it collapses t
 stacked list with inline thumbnails - no sticky behaviour to fight the small viewport.
 
 **Honest numbers.** Every figure on the page is traceable to the original site's own copy -
-8+ years, 49 services, 6 verticals, 8 marketplaces, 7–15 day websites, 3–8 week platforms,
+8+ years, 49 services, 6 verticals, 8 marketplaces, 7-15 day websites, 3-8 week platforms,
 one business day to reply. Nothing was invented to fill a stat block.
 
 ---

@@ -1,31 +1,20 @@
-/* ==========================================================================
-   Tcongs Infotech — Home Page Redesign
-   Design system + components. Zero dependencies.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. Tokens
-   -------------------------------------------------------------------------- */
 :root {
-  /* Surfaces */
+
   --bg: #08080a;
   --bg-2: #0b0b0e;
   --surface: #101014;
   --surface-2: #16161d;
   --surface-3: #1c1c24;
 
-  /* Lines */
   --line: rgba(255, 255, 255, 0.08);
   --line-2: rgba(255, 255, 255, 0.14);
   --line-3: rgba(255, 255, 255, 0.22);
 
-  /* Text */
   --text: #f4f4f7;
   --text-2: #b6b6c2;
   --muted: #8d8d9b;
   --muted-2: #63636f;
 
-  /* Brand — carried over from the live site */
   --brand: #e51a4b;
   --brand-2: #ff3a68;
   --brand-soft: rgba(229, 26, 75, 0.12);
@@ -33,11 +22,9 @@
   --lime: #e2ec07;
   --lime-soft: rgba(226, 236, 7, 0.1);
 
-  /* Type */
   --font-display: "Geologica", "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
 
-  /* Fluid type scale */
   --fs-hero: clamp(2.6rem, 1.2rem + 5.6vw, 5.5rem);
   --fs-h2: clamp(1.9rem, 1.1rem + 2.6vw, 3.25rem);
   --fs-h3: clamp(1.25rem, 1rem + 0.9vw, 1.6rem);
@@ -46,19 +33,16 @@
   --fs-sm: 0.875rem;
   --fs-xs: 0.78rem;
 
-  /* Space */
   --section-y: clamp(72px, 8vw, 130px);
   --gutter: clamp(20px, 4vw, 56px);
   --maxw: 1280px;
 
-  /* Shape */
   --r-sm: 10px;
   --r-md: 16px;
   --r-lg: 24px;
   --r-xl: 32px;
   --r-pill: 999px;
 
-  /* Motion */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur: 0.45s;
@@ -67,9 +51,6 @@
   --nav-h: 72px;
 }
 
-/* --------------------------------------------------------------------------
-   2. Reset & base
-   -------------------------------------------------------------------------- */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -117,7 +98,6 @@ ul, ol { list-style: none; }
   border-radius: 4px;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
@@ -142,9 +122,6 @@ ul, ol { list-style: none; }
 }
 .skip-link:focus { transform: translateY(0); }
 
-/* --------------------------------------------------------------------------
-   3. Layout primitives
-   -------------------------------------------------------------------------- */
 .container {
   width: 100%;
   max-width: var(--maxw);
@@ -161,16 +138,15 @@ ul, ol { list-style: none; }
   background: linear-gradient(90deg, transparent, var(--line-2) 20%, var(--line-2) 80%, transparent);
 }
 
-/* Ambient background layers */
 .bg-layer {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  /* -1 keeps the grain above the page canvas but behind every section */
+
   z-index: -1;
 }
 .bg-layer::before {
-  /* subtle film grain */
+
   content: "";
   position: absolute;
   inset: 0;
@@ -195,9 +171,6 @@ ul, ol { list-style: none; }
   will-change: transform;
 }
 
-/* --------------------------------------------------------------------------
-   4. Text utilities
-   -------------------------------------------------------------------------- */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -296,9 +269,6 @@ ul, ol { list-style: none; }
   .split-head { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
 }
 
-/* --------------------------------------------------------------------------
-   5. Buttons
-   -------------------------------------------------------------------------- */
 .btn {
   --btn-bg: var(--lime);
   --btn-fg: #0c0c0c;
@@ -367,9 +337,6 @@ ul, ol { list-style: none; }
 }
 .text-link:hover { gap: 12px; color: var(--lime); }
 
-/* --------------------------------------------------------------------------
-   6. Header / navigation
-   -------------------------------------------------------------------------- */
 .header {
   position: fixed;
   inset: 0 0 auto;
@@ -430,7 +397,6 @@ ul, ol { list-style: none; }
 .nav-actions .btn { display: none; }
 @media (min-width: 640px) { .nav-actions .btn { display: inline-flex; } }
 
-/* Hamburger */
 .burger {
   display: grid;
   place-items: center;
@@ -454,7 +420,6 @@ ul, ol { list-style: none; }
 .header.is-open .burger span:nth-child(2) { opacity: 0; }
 .header.is-open .burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* Mega menu (desktop) */
 .mega {
   position: absolute;
   top: calc(100% - 6px);
@@ -527,7 +492,6 @@ ul, ol { list-style: none; }
 .mega-feature p { font-size: var(--fs-sm); color: var(--text-2); }
 .mega-feature .text-link { margin-top: auto; }
 
-/* Mobile drawer */
 .drawer {
   position: fixed;
   inset: var(--nav-h) 0 0;
@@ -584,9 +548,6 @@ ul, ol { list-style: none; }
 }
 .drawer-cta { display: grid; gap: 12px; margin-top: 28px; }
 
-/* --------------------------------------------------------------------------
-   7. Hero
-   -------------------------------------------------------------------------- */
 .hero {
   position: relative;
   padding-top: calc(var(--nav-h) + clamp(48px, 8vw, 96px));
@@ -695,7 +656,6 @@ ul, ol { list-style: none; }
   margin-top: 2px;
 }
 
-/* Hero visual — floating glass panels */
 .hero-visual {
   position: relative;
   aspect-ratio: 1 / 1;
@@ -815,9 +775,6 @@ ul, ol { list-style: none; }
 }
 @keyframes grow { from { transform: scaleY(0); } }
 
-/* --------------------------------------------------------------------------
-   8. Logo marquee
-   -------------------------------------------------------------------------- */
 .marquee-wrap {
   border-block: 1px solid var(--line);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent);
@@ -866,9 +823,6 @@ ul, ol { list-style: none; }
 }
 .marquee-item:hover img { opacity: 1; filter: none; }
 
-/* --------------------------------------------------------------------------
-   9. Services bento
-   -------------------------------------------------------------------------- */
 .bento {
   display: grid;
   gap: 16px;
@@ -900,7 +854,7 @@ ul, ol { list-style: none; }
   transition: border-color 0.4s var(--ease), transform 0.4s var(--ease-out), background 0.4s var(--ease);
 }
 .card::before {
-  /* cursor-follow spotlight, driven by --mx/--my from JS */
+
   content: "";
   position: absolute;
   inset: -1px;
@@ -955,7 +909,6 @@ ul, ol { list-style: none; }
 }
 .card:hover .chips li { color: var(--text-2); border-color: var(--line-2); }
 
-/* Wide card #6 gets a horizontal layout on desktop */
 @media (min-width: 1024px) {
   .card--wide { flex-direction: row; align-items: center; gap: 30px; }
   .card--wide .cw-main { flex: 1 1 auto; display: flex; flex-direction: column; gap: 12px; }
@@ -975,9 +928,6 @@ ul, ol { list-style: none; }
   letter-spacing: -0.05em;
 }
 
-/* --------------------------------------------------------------------------
-   10. Marketplaces
-   -------------------------------------------------------------------------- */
 .market-grid {
   display: grid;
   gap: 12px;
@@ -1017,9 +967,6 @@ ul, ol { list-style: none; }
 }
 .market-item span { font-size: var(--fs-xs); color: var(--muted-2); }
 
-/* --------------------------------------------------------------------------
-   11. Work / showcase — CSS-rendered product mockups
-   -------------------------------------------------------------------------- */
 .work-grid {
   display: grid;
   gap: 18px;
@@ -1079,7 +1026,6 @@ ul, ol { list-style: none; }
   transform: rotate(45deg);
 }
 
-/* Shared mock frame */
 .mock {
   height: 100%;
   background: #0a0a0d;
@@ -1124,7 +1070,6 @@ ul, ol { list-style: none; }
 }
 .mock-body { flex: 1; display: flex; min-height: 0; }
 
-/* mock atoms */
 .m-side {
   width: 74px;
   flex: none;
@@ -1238,7 +1183,6 @@ ul, ol { list-style: none; }
   flex: none;
 }
 
-/* Ship Track map */
 .m-map {
   flex: 1;
   position: relative;
@@ -1287,7 +1231,6 @@ ul, ol { list-style: none; }
 .m-steps span.done { background: var(--lime); }
 .m-steps span.now { background: var(--brand); }
 
-/* Villa Vault */
 .m-villa { flex: 1; display: flex; flex-direction: column; gap: 9px; }
 .m-photo {
   flex: 1;
@@ -1363,7 +1306,6 @@ ul, ol { list-style: none; }
 }
 .m-dates i.on { border-color: var(--brand); background: var(--brand-soft); }
 
-/* Bloom Money */
 .m-bloom { flex: 1; display: flex; align-items: center; gap: 13px; }
 .m-ring {
   width: 74px;
@@ -1420,7 +1362,6 @@ ul, ol { list-style: none; }
 }
 .m-bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--brand), var(--lime)); }
 
-/* "Your project here" */
 .work-card--ghost {
   background: transparent;
   border-style: dashed;
@@ -1446,9 +1387,6 @@ ul, ol { list-style: none; }
 .work-card--ghost:hover .plus { color: var(--lime); border-color: var(--lime); transform: rotate(90deg); }
 @media (min-width: 860px) { .work-card--ghost { grid-column: span 2; } }
 
-/* --------------------------------------------------------------------------
-   12. Process
-   -------------------------------------------------------------------------- */
 .process-layout {
   display: grid;
   gap: clamp(32px, 4vw, 56px);
@@ -1595,9 +1533,6 @@ ul, ol { list-style: none; }
 .step-thumb img { width: 100%; height: 100%; object-fit: cover; }
 @media (min-width: 1024px) { .step-thumb { display: none; } }
 
-/* --------------------------------------------------------------------------
-   13. Value props
-   -------------------------------------------------------------------------- */
 .value-grid {
   display: grid;
   gap: 16px;
@@ -1624,7 +1559,6 @@ ul, ol { list-style: none; }
 .value-card h3 { font-size: 1.08rem; }
 .value-card p { font-size: var(--fs-sm); color: var(--text-2); }
 
-/* Stat band */
 .stat-band {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1656,9 +1590,6 @@ ul, ol { list-style: none; }
 }
 .stat-cell span { display: block; margin-top: 10px; font-size: var(--fs-sm); color: var(--muted); }
 
-/* --------------------------------------------------------------------------
-   14. CTA band
-   -------------------------------------------------------------------------- */
 .cta-band {
   position: relative;
   padding: clamp(44px, 6vw, 84px) clamp(24px, 4vw, 64px);
@@ -1708,9 +1639,6 @@ ul, ol { list-style: none; }
   justify-content: center;
 }
 
-/* --------------------------------------------------------------------------
-   15. FAQ
-   -------------------------------------------------------------------------- */
 .faq-layout {
   display: grid;
   gap: clamp(32px, 4vw, 56px);
@@ -1786,9 +1714,6 @@ ul, ol { list-style: none; }
 }
 @media (max-width: 600px) { .faq-a p { padding-right: 20px; } }
 
-/* --------------------------------------------------------------------------
-   16. Contact
-   -------------------------------------------------------------------------- */
 .contact-layout {
   display: grid;
   gap: clamp(32px, 4vw, 56px);
@@ -1939,9 +1864,6 @@ ul, ol { list-style: none; }
   from { opacity: 0; transform: translateY(12px); }
 }
 
-/* --------------------------------------------------------------------------
-   17. Footer
-   -------------------------------------------------------------------------- */
 .footer {
   border-top: 1px solid var(--line);
   background: var(--bg-2);
@@ -2020,7 +1942,6 @@ ul, ol { list-style: none; }
   overflow: hidden;
 }
 
-/* Back to top */
 .to-top {
   position: fixed;
   right: clamp(16px, 3vw, 32px);
@@ -2044,9 +1965,6 @@ ul, ol { list-style: none; }
 .to-top.is-shown { opacity: 1; visibility: visible; transform: none; }
 .to-top:hover { background: var(--brand); border-color: var(--brand); }
 
-/* --------------------------------------------------------------------------
-   18. Scroll reveal
-   -------------------------------------------------------------------------- */
 [data-reveal] {
   opacity: 0;
   transform: translateY(26px);
@@ -2055,9 +1973,6 @@ ul, ol { list-style: none; }
 }
 [data-reveal].is-in { opacity: 1; transform: none; }
 
-/* --------------------------------------------------------------------------
-   19. Reduced motion
-   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *,
@@ -2072,9 +1987,6 @@ ul, ol { list-style: none; }
   .step { opacity: 1 !important; }
 }
 
-/* --------------------------------------------------------------------------
-   20. Print
-   -------------------------------------------------------------------------- */
 @media print {
   .header, .to-top, .bg-layer, .marquee-wrap, .hero-visual { display: none !important; }
   body { background: #fff; color: #000; }
